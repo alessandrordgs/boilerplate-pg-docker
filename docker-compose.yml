@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:alpine
+    restart: always
+    mem_limit: 1024m
+    mem_reservation: 1024m
+    environment:
+      POSTGRES_PASSWORD: root
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - '6003:5432'
+    expose:
+      # Opens port 3306 on the container
+      - '5442'
+      # Where our data will be persisted
+    volumes:
+      - .:/home/node/app
+# Names our volume
